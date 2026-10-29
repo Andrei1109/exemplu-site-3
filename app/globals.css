@@ -1,0 +1,152 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Overridden at runtime from invitationConfig.theme */
+  --burgundy: #672d3e;
+  --wine: #833f50;
+  --blush: #d9b7b5;
+  --ivory: #f6f0e7;
+  --gold: #bdaa86;
+  --font-display: var(--font-cormorant);
+  --font-body: var(--font-jost);
+
+  --background: var(--ivory);
+  --foreground: var(--burgundy);
+  --card: var(--ivory);
+  --card-foreground: var(--burgundy);
+  --popover: var(--ivory);
+  --popover-foreground: var(--burgundy);
+  --primary: var(--burgundy);
+  --primary-foreground: var(--ivory);
+  --secondary: var(--blush);
+  --secondary-foreground: var(--burgundy);
+  --muted: var(--blush);
+  --muted-foreground: var(--wine);
+  --accent: var(--wine);
+  --accent-foreground: var(--ivory);
+  --destructive: #9b2335;
+  --border: var(--gold);
+  --input: var(--gold);
+  --ring: var(--wine);
+  --radius: 0.25rem;
+}
+
+@theme inline {
+  --color-burgundy: var(--burgundy);
+  --color-wine: var(--wine);
+  --color-blush: var(--blush);
+  --color-ivory: var(--ivory);
+  --color-gold: var(--gold);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+
+  --font-serif: var(--font-display), 'Cormorant Garamond', Georgia, serif;
+  --font-sans: var(--font-body), 'Jost', system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-size: 1rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--blush);
+    color: var(--burgundy);
+  }
+  :focus-visible {
+    outline: 2px solid var(--wine);
+    outline-offset: 3px;
+  }
+  .on-burgundy :focus-visible {
+    outline-color: var(--blush);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Antique correspondence paper: a faint fibrous grain, no gradients. */
+@utility paper {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.33  0 0 0 0 0.25  0 0 0 0.09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+}
+
+/* Tonal damask lattice, tinted with the theme gold through a mask. */
+@utility damask {
+  background-color: var(--gold);
+  opacity: 0.09;
+  -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72' fill='none' stroke='black' stroke-width='0.8'><path d='M36 4c8 10 8 22 0 32-8-10-8-22 0-32Zm0 64c8-10 8-22 0-32-8 10-8 22 0 32ZM4 36c10-8 22-8 32 0-10 8-22 8-32 0Zm64 0c-10-8-22-8-32 0 10 8 22 8 32 0Z'/><circle cx='36' cy='36' r='2.5'/><path d='M0 0l8 8M72 0l-8 8M0 72l8-8M72 72l-8-8'/><circle cx='0' cy='0' r='3'/><circle cx='72' cy='0' r='3'/><circle cx='0' cy='72' r='3'/><circle cx='72' cy='72' r='3'/></svg>");
+  mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72' fill='none' stroke='black' stroke-width='0.8'><path d='M36 4c8 10 8 22 0 32-8-10-8-22 0-32Zm0 64c8-10 8-22 0-32-8 10-8 22 0 32ZM4 36c10-8 22-8 32 0-10 8-22 8-32 0Zm64 0c-10-8-22-8-32 0 10 8 22 8 32 0Z'/><circle cx='36' cy='36' r='2.5'/><path d='M0 0l8 8M72 0l-8 8M0 72l8-8M72 72l-8-8'/><circle cx='0' cy='0' r='3'/><circle cx='72' cy='0' r='3'/><circle cx='0' cy='72' r='3'/><circle cx='72' cy='72' r='3'/></svg>");
+  -webkit-mask-size: 72px 72px;
+  mask-size: 72px 72px;
+}
+
+/* Velvet depth: edges fall into a deeper wine so the centre glows softly. */
+@utility velvet-depth {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 35%,
+    color-mix(in oklab, var(--burgundy) 55%, black) 130%
+  );
+}
+
+/* Lifts the dark watercolor roses off the burgundy ground. */
+@utility floral-glow {
+  filter: drop-shadow(0 0 14px color-mix(in oklab, var(--ivory) 18%, transparent))
+    drop-shadow(0 10px 18px rgba(30, 8, 14, 0.45));
+}
+
+@utility small-caps {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
